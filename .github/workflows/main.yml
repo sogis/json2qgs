@@ -38,7 +38,7 @@ jobs:
       - name: Start demo database and qgis-server 2
         run: |
           cd tests/docker
-          docker-compose up -d
+          docker compose up -d
 
       - name: Setting up python 3.9
         uses: actions/setup-python@v2
