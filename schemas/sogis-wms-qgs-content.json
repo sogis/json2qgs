@@ -322,6 +322,11 @@
           "type": "string",
           "contentEncoding": "base64"
         },
+	"dimension": {
+	  "description": "WMS Time Dimension",
+	  "type": "string"
+	},
+	{
         "qml_assets": {
           "title": "QML assets",
           "type": "array",

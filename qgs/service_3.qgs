@@ -116,6 +116,7 @@
                 {{ item['style'] }}
                 <mapTip>{{ item['mapTip'] }}</mapTip>
                 <dataUrl format="">{{ item['dataUrl'] }}</dataUrl>
+                <wmsDimensions>{{ item['wmsDimensions'] }}</wmsDimensions>
             </maplayer>
         {%- endif -%}
     {%- endfor -%}
