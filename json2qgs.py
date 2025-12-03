@@ -160,6 +160,7 @@ class Json2Qgs():
             # add aliases from layer config
             for i, attribute in enumerate(attributes):
                 # get alias from from alias data
+                self.logger.debug("alias %s" % attribute.get("alias"))
                 attr_alias = attribute.get("alias", "")
                 try:
                     if attr_alias.startswith('{'):
@@ -206,6 +207,7 @@ class Json2Qgs():
         layer_info = None
 
         layer = layers_lookup.get(layer_name)
+        self.logger.debug("layer %s" % layer)
         if layer is None:
             self.logger.warning(
                 "Could not find layer %s'%s'" % ("  " * depth, layer_name)
@@ -283,10 +285,12 @@ class Json2Qgs():
                     )
                 )
             try:
+                self.logger.debug("attributes %s" % layer.get("attributes",[]))
                 qml = self.get_qml_from_base64(
                     layer["qml_base64"], layer.get("attributes", []))
                 qgs_layer["style"] = qml["style"]
                 qgs_layer["attributes"] = qml["attr"]
+                #self.logger.debug("qml %s" % qml["style"])
 
             except:
                 if is_wms:
@@ -301,6 +305,8 @@ class Json2Qgs():
                 qgs_layer["style"] = qml["style"]
                 qgs_layer["attributes"] = qml["attr"]
 
+            if "dimension" in layer_keys:
+                qgs_layer["wmsDimensions"] = "dimension defaultDisplayType='0' fieldName='schadendatum' unitSymbol='' units='ISO8601' name='time' referenceValue='' endFieldName='enddatum'"
             if "qml_assets" in layer_keys:
                 # Iterate through all assets used in the QML and save them
                 # in the filesystem
