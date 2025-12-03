@@ -326,7 +326,6 @@
 	  "description": "WMS Time Dimension",
 	  "type": "string"
 	},
-	{
         "qml_assets": {
           "title": "QML assets",
           "type": "array",
