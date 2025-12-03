@@ -306,7 +306,7 @@ class Json2Qgs():
                 qgs_layer["attributes"] = qml["attr"]
 
             if "dimension" in layer_keys:
-                qgs_layer["wmsDimensions"] = "dimension defaultDisplayType='0' fieldName='schadendatum' unitSymbol='' units='ISO8601' name='time' referenceValue='' endFieldName='enddatum'"
+                qgs_layer["wmsDimensions"] = "<dimension defaultDisplayType='0' fieldName='schadendatum' unitSymbol='' units='ISO8601' name='time' referenceValue='' endFieldName='enddatum'/>"
             if "qml_assets" in layer_keys:
                 # Iterate through all assets used in the QML and save them
                 # in the filesystem
