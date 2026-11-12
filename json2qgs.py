@@ -91,7 +91,12 @@ class Json2Qgs():
             'selection_color_rgba', [255, 255, 0, 255]
         )
 
-        if qgis_version == '3':
+        qml_version_suffix = ""
+        if qgis_version == '4':
+            self.qgs_template_fn = os.path.join(
+                qgs_template_dir, 'service_4.qgs')
+            qml_version_suffix = "_4"
+        elif qgis_version == '3':
             self.qgs_template_fn = os.path.join(
                 qgs_template_dir, 'service_3.qgs')
         else:
@@ -107,13 +112,13 @@ class Json2Qgs():
         # load default styles
         self.default_styles = {
             "point": self.load_template(
-                os.path.join(qgs_template_dir, 'point.qml')),
+                os.path.join(qgs_template_dir, f'point{qml_version_suffix}.qml')),
             "linestring": self.load_template(
-                os.path.join(qgs_template_dir, 'linestring.qml')),
+                os.path.join(qgs_template_dir, f'linestring{qml_version_suffix}.qml')),
             "polygon": self.load_template(
-                os.path.join(qgs_template_dir, 'polygon.qml')),
+                os.path.join(qgs_template_dir, f'polygon{qml_version_suffix}.qml')),
             "raster": self.load_template(
-                os.path.join(qgs_template_dir, 'raster.qml'))
+                os.path.join(qgs_template_dir, f'raster{qml_version_suffix}.qml'))
         }
 
         self.qgs_name = qgs_name
@@ -233,6 +238,7 @@ class Json2Qgs():
 
             layer_info = {
                 "type": layer["type"],
+                "opaque": layer.get("opaque", False),
                 "name": layer["name"],
                 "title": layer["title"],
                 "items": sublayers
@@ -737,8 +743,8 @@ if __name__ == '__main__':
         help="Directory where the generated QGS and QML assets should be saved in"
     )
     parser.add_argument(
-        "qgisVersion", choices=['2', '3'],
-        help="Wether to use the QGIS 2 or QGIS 3 service template"
+        "qgisVersion", choices=['2', '3', '4'],
+        help="Wether to use the QGIS 2, QGIS 3 or QGIS 4 service template"
     )
     parser.add_argument(
         '--qgsTemplateDir',

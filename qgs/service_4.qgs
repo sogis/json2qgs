@@ -1,0 +1,314 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis version="4.2.3-Belém do Pará" projectname="{{ wms_root_title }}">
+  <homePath path=""/>
+  <title>{{ wms_root_title }}</title>
+  <transaction mode="Disabled"/>
+  <projectFlags set="0"/>
+  <projectCrs>
+    <spatialrefsys nativeFormat="Wkt">
+      <wkt>PROJCRS["CH1903+ / LV95",BASEGEOGCRS["CH1903+",DATUM["CH1903+",ELLIPSOID["Bessel 1841",6377397.155,299.1528128,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4150]],CONVERSION["Swiss Oblique Mercator 1995",METHOD["Hotine Oblique Mercator (variant B)",ID["EPSG",9815]],PARAMETER["Latitude of projection centre",46.9524055555556,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8811]],PARAMETER["Longitude of projection centre",7.43958333333333,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8812]],PARAMETER["Azimuth at projection centre",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8813]],PARAMETER["Angle from Rectified to Skew Grid",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8814]],PARAMETER["Scale factor at projection centre",1,SCALEUNIT["unity",1],ID["EPSG",8815]],PARAMETER["Easting at projection centre",2600000,LENGTHUNIT["metre",1],ID["EPSG",8816]],PARAMETER["Northing at projection centre",1200000,LENGTHUNIT["metre",1],ID["EPSG",8817]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Cadastre, engineering survey, topographic mapping (large and medium scale)."],AREA["Liechtenstein; Switzerland."],BBOX[45.81,5.95,47.81,10.5]],ID["EPSG",2056]]</wkt>
+      <proj4>+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+      <srsid>47</srsid>
+      <srid>2056</srid>
+      <authid>EPSG:2056</authid>
+      <description>CH1903+ / LV95</description>
+      <projectionacronym>somerc</projectionacronym>
+      <ellipsoidacronym>EPSG:7004</ellipsoidacronym>
+      <geographicflag>false</geographicflag>
+    </spatialrefsys>
+  </projectCrs>
+  <verticalCrs>
+    <spatialrefsys nativeFormat="Wkt">
+      <wkt></wkt>
+      <proj4></proj4>
+      <srsid>0</srsid>
+      <srid>0</srid>
+      <authid></authid>
+      <description></description>
+      <projectionacronym></projectionacronym>
+      <ellipsoidacronym></ellipsoidacronym>
+      <geographicflag>false</geographicflag>
+    </spatialrefsys>
+  </verticalCrs>
+  <layer-tree-group>
+    {%- for item in layertree recursive -%}
+        {% if item['type'] == "productset" %}
+            <layer-tree-group expanded="1" checked="Qt::Checked" name="{{ item['name'] }}" wms-group-request-mode="{{ 'Opaque' if item['opaque'] else 'Normal' }}">
+              <shortname>{{ item['name'] }}"</shortname>
+              <title wfs="">{{ item['title'] }}</title>
+                {{ loop(item['items']) }}
+            </layer-tree-group>
+        {%- elif item['type'] -%}
+            {{''}}
+            <layer-tree-layer expanded="1" checked="Qt::Checked" id="{{ item['id'] }}" name="{{ item['name'] }}" legend_exp="" legend_split_behavior="0"></layer-tree-layer>
+        {%- endif -%}
+    {% endfor %}
+    <custom-order enabled="0"/>
+  </layer-tree-group>
+  <snapping-settings enabled="0" intersection-snapping="0" maxScale="0" minScale="0" mode="2" scaleDependencyMode="0" self-snapping="0" tolerance="12" type="1" unit="1">
+    <individual-layer-settings/>
+  </snapping-settings>
+  <relations/>
+  <polymorphicRelations/>
+  <mapcanvas name="theMapCanvas" annotationsVisible="1">
+    <units>meters</units>
+    <extent>
+      <xmin>2590983.47500000009313226</xmin>
+      <ymin>1212806.11562500009313226</ymin>
+      <xmax>2646267.02499999990686774</xmax>
+      <ymax>1262755.00937499990686774</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys nativeFormat="Wkt">
+        <wkt>PROJCRS["CH1903+ / LV95",BASEGEOGCRS["CH1903+",DATUM["CH1903+",ELLIPSOID["Bessel 1841",6377397.155,299.1528128,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4150]],CONVERSION["Swiss Oblique Mercator 1995",METHOD["Hotine Oblique Mercator (variant B)",ID["EPSG",9815]],PARAMETER["Latitude of projection centre",46.9524055555556,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8811]],PARAMETER["Longitude of projection centre",7.43958333333333,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8812]],PARAMETER["Azimuth at projection centre",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8813]],PARAMETER["Angle from Rectified to Skew Grid",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8814]],PARAMETER["Scale factor at projection centre",1,SCALEUNIT["unity",1],ID["EPSG",8815]],PARAMETER["Easting at projection centre",2600000,LENGTHUNIT["metre",1],ID["EPSG",8816]],PARAMETER["Northing at projection centre",1200000,LENGTHUNIT["metre",1],ID["EPSG",8817]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Cadastre, engineering survey, topographic mapping (large and medium scale)."],AREA["Liechtenstein; Switzerland."],BBOX[45.81,5.95,47.81,10.5]],ID["EPSG",2056]]</wkt>
+        <proj4>+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+        <srsid>47</srsid>
+        <srid>2056</srid>
+        <authid>EPSG:2056</authid>
+        <description>CH1903+ / LV95</description>
+        <projectionacronym>somerc</projectionacronym>
+        <ellipsoidacronym>EPSG:7004</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+  </mapcanvas>
+  <projectModels/>
+  <legend updateDrawingOrder="true">
+    {% for item in layertree recursive %}
+      {% if item['type'] == "productset" %}
+        <legendgroup open="true" checked="Qt::Checked" name="{{ item['name'] }}">
+          {{ loop(item['items']) }}
+        </legendgroup>
+      {% elif item['type'] %}
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="{{ item['name'] }}" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="{{ item['id'] }}" visible="1"/>
+          </filegroup>
+        </legendlayer>
+      {% endif %}
+    {% endfor %}
+  </legend>
+  <mapViewDocks/>
+  <projectlayers>
+    {%- for item in layertree recursive -%}
+        {%- if item['type'] == "productset" -%}
+            {{ loop(item['items']) }}
+        {% elif item['type'] %}
+            <maplayer type="{{ item['layertype'] }}" {{ item['attributes'] }}>
+              {% if item['extent'] is not none %}
+                <extent>
+                    <xmin>{{ item['extent'][0] }}</xmin>
+                    <ymin>{{ item['extent'][1] }}</ymin>
+                    <xmax>{{ item['extent'][2] }}</xmax>
+                    <ymax>{{ item['extent'][3] }}</ymax>
+                </extent>
+              {% endif %}
+                <id>{{ item['id'] }}</id>
+                <datasource>{{ item['datasource'] }}</datasource>
+                <layername>{{ item['name'] }}</layername>
+                <shortname>{{ item['name'] }}</shortname>
+                <title>{{ item['title'] }}</title>
+                <abstract>{{ item['abstract'] }}</abstract>
+                <srs>
+                    <spatialrefsys>
+                      <wkt>PROJCRS["CH1903+ / LV95",BASEGEOGCRS["CH1903+",DATUM["CH1903+",ELLIPSOID["Bessel 1841",6377397.155,299.1528128,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4150]],CONVERSION["Swiss Oblique Mercator 1995",METHOD["Hotine Oblique Mercator (variant B)",ID["EPSG",9815]],PARAMETER["Latitude of projection centre",46.9524055555556,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8811]],PARAMETER["Longitude of projection centre",7.43958333333333,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8812]],PARAMETER["Azimuth at projection centre",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8813]],PARAMETER["Angle from Rectified to Skew Grid",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8814]],PARAMETER["Scale factor at projection centre",1,SCALEUNIT["unity",1],ID["EPSG",8815]],PARAMETER["Easting at projection centre",2600000,LENGTHUNIT["metre",1],ID["EPSG",8816]],PARAMETER["Northing at projection centre",1200000,LENGTHUNIT["metre",1],ID["EPSG",8817]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Cadastre, engineering survey, topographic mapping (large and medium scale)."],AREA["Liechtenstein; Switzerland."],BBOX[45.81,5.95,47.81,10.5]],ID["EPSG",2056]]</wkt>
+                      <proj4>+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+                      <srsid>47</srsid>
+                      <srid>2056</srid>
+                      <authid>EPSG:2056</authid>
+                      <description>CH1903+ / LV95</description>
+                      <projectionacronym>somerc</projectionacronym>
+                      <ellipsoidacronym>EPSG:7004</ellipsoidacronym>
+                      <geographicflag>false</geographicflag>
+                    </spatialrefsys>
+                </srs>
+                <provider encoding="UTF-8">{{ item['provider'] }}</provider>
+                {{ item['style'] }}
+                <mapTip>{{ item['mapTip'] }}</mapTip>
+                <dataUrl format="">{{ item['dataUrl'] }}</dataUrl>
+                <wmsDimensions>{{ item['wmsDimensions'] }}</wmsDimensions>
+            </maplayer>
+        {%- endif -%}
+    {%- endfor -%}
+  </projectlayers>
+  <layerorder/>
+  <properties name="properties">
+    <properties name="Legend">
+      <properties name="filterByMap" type="bool">false</properties>
+    </properties>
+    <properties name="Gui">
+      <properties name="CanvasColorRedPart" type="int">255</properties>
+      <properties name="CanvasColorGreenPart" type="int">255</properties>
+      <properties name="CanvasColorBluePart" type="int">255</properties>
+      <properties name="SelectionColorRedPart" type="int">{{ selection_color[0] }}</properties>
+      <properties name="SelectionColorGreenPart" type="int">{{ selection_color[1] }}</properties>
+      <properties name="SelectionColorBluePart" type="int">{{ selection_color[2] }}</properties>
+      <properties name="SelectionColorAlphaPart" type="int">{{ selection_color[3] }}</properties>
+    </properties>
+    <properties name="Paths">
+      <properties name="Absolute" type="bool">false</properties>
+    </properties>
+    <properties name="PositionPrecision">
+      <properties name="Automatic" type="bool">true</properties>
+      <properties name="DecimalPlaces" type="int">2</properties>
+      <properties name="DegreeFormat" type="QString">MU</properties>
+    </properties>
+    <properties name="Measure">
+      <properties name="Ellipsoid" type="QString">bessel</properties>
+    </properties>
+    <properties name="Macros">
+      <properties name="pythonCode" type="QString"></properties>
+    </properties>
+    <properties name="DefaultStyles"/>
+    <properties name="PAL">
+      <properties name="CandidatesLine" type="int">50</properties>
+      <properties name="CandidatesLinePerCM" type="double">5</properties>
+      <properties name="CandidatesPoint" type="int">16</properties>
+      <properties name="CandidatesPolygon" type="int">30</properties>
+      <properties name="CandidatesPolygonPerCM" type="double">2.5</properties>
+      <properties name="DrawLabelMetrics" type="bool">false</properties>
+      <properties name="DrawRectOnly" type="bool">false</properties>
+      <properties name="DrawUnplaced" type="bool">false</properties>
+      <properties name="PlacementEngineVersion" type="int">0</properties>
+      <properties name="SearchMethod" type="int">0</properties>
+      <properties name="ShowingAllLabels" type="bool">false</properties>
+      <properties name="ShowingCandidates" type="bool">false</properties>
+      <properties name="ShowingPartialsLabels" type="bool">true</properties>
+      <properties name="TextFormat" type="int">0</properties>
+      <properties name="UnplacedColor" type="QString">255,0,0,255,rgb:1,0,0,1</properties>
+    </properties>
+    <properties name="SpatialRefSys">
+      <properties name="ProjectionsEnabled" type="int">1</properties>
+    </properties>
+    <properties name="Measurement">
+      <properties name="AreaUnits" type="QString">m2</properties>
+      <properties name="DistanceUnits" type="QString">meters</properties>
+      <properties name="ScaleMethod" type="QString">HorizontalMiddle</properties>
+    </properties>
+
+    <properties name="WMSServiceTitle" type="QString">{{ wms_service_title }}</properties>
+    <properties name="WMSServiceAbstract" type="QString">{{ wms_service_abstract }}</properties>
+    <properties name="WMSKeywordList" type="QStringList">
+{%- if wms_keywords is defined and wms_keywords is not none -%}
+    {%- for keyword in wms_keywords %}
+      <value>{{keyword}}</value>
+    {%- endfor %}
+{%- endif %}
+    </properties>
+    <properties name="WMSOnlineResource" type="QString">{{ wms_url }}</properties>
+    <properties name="WMSContactPerson" type="QString">{{ wms_contact_person }}</properties>
+    <properties name="WMSContactOrganization" type="QString">{{ wms_contact_organization }}</properties>
+    <properties name="WMSContactPosition" type="QString">{{ wms_contact_position }}</properties>
+    <properties name="WMSContactPhone" type="QString">{{ wms_contact_phone }}</properties>
+    <properties name="WMSContactMail" type="QString">{{ wms_contact_mail }}</properties>
+    <properties name="WMSFees" type="QString">{{ wms_fees }}</properties>
+    <properties name="WMSAccessConstraints" type="QString">{{ wms_access_constraints }}</properties>
+
+    <properties name="WMSRootName" type="QString">{{ wms_root_name }}</properties>
+    <properties name="WMSCrsList" type="QStringList">
+{%- if wms_crs_list is defined and wms_crs_list is not none -%}
+    {%- for crs in wms_crs_list %}
+      <value>{{crs}}</value>
+    {%- endfor %}
+{%- endif %}
+    </properties>
+{% if wms_extent is defined and wms_extent is not none %}
+    <properties name="WMSExtent" type="QStringList">
+      <value>{{ wms_extent[0] }}</value>
+      <value>{{ wms_extent[1] }}</value>
+      <value>{{ wms_extent[2] }}</value>
+      <value>{{ wms_extent[3] }}</value>
+    </properties>
+{%- endif %}
+{%- if wms_max_width %}
+    <properties name="WMSMaxWidth" type="int">{{ wms_max_width }}</properties>
+{%- endif %}
+{%- if wms_max_height %}
+    <properties name="WMSMaxHeight" type="int">{{ wms_max_height }}</properties>
+{%- endif %}
+
+    <properties name="WMSFeatureInfoAliasLayers">
+      <value>
+        <text/>
+      </value>
+    </properties>
+    <properties name="WMSFeatureInfoLayerAliases">
+      <value>
+        <text/>
+      </value>
+    </properties>
+
+    <properties name="WMSAddWktGeometry" type="bool">true</properties>
+    <properties name="WMSImageQuality" type="int">90</properties>
+    <properties name="WMSPrecision" type="QString">4</properties>
+    <properties name="WMSRequestDefinedDataSources" type="bool">false</properties>
+    <properties name="WMSSegmentizeFeatureInfoGeometry" type="bool">false</properties>
+    <properties name="WMSServiceCapabilities" type="bool">true</properties>
+    <properties name="WMSUrl" type="QString"></properties>
+    <properties name="WMSUseLayerIDs" type="bool">false</properties>
+
+    <properties name="WFSUrl" type="QString">{{ wfs_url }}</properties>
+    <properties name="WFSLayers" type="QStringList">
+    {% for id in wfs_layers -%}
+        <value>{{ id }}</value>
+    {% endfor -%}
+    </properties>
+
+    <properties name="WMTSUrl" type="QString"></properties>
+    <properties name="WMTSLayers">
+      <properties name="Group" type="QStringList"/>
+      <properties name="Layer" type="QStringList"/>
+      <properties name="Project" type="bool">false</properties>
+    </properties>
+    <properties name="WMTSJpegLayers">
+      <properties name="Group" type="QStringList"/>
+      <properties name="Layer" type="QStringList"/>
+      <properties name="Project" type="bool">false</properties>
+    </properties>
+    <properties name="WMTSPngLayers">
+      <properties name="Group" type="QStringList"/>
+      <properties name="Layer" type="QStringList"/>
+      <properties name="Project" type="bool">false</properties>
+    </properties>
+    <properties name="WMTSMinScale" type="int">5000</properties>
+
+    <properties name="WFSTLayers">
+      <properties name="Delete" type="QStringList"/>
+      <properties name="Insert" type="QStringList"/>
+      <properties name="Update" type="QStringList"/>
+    </properties>
+
+    <properties name="WCSUrl" type="QString"></properties>
+    <properties name="WCSLayers" type="QStringList"/>
+  </properties>
+  <visibility-presets/>
+  <transformContext/>
+  <projectMetadata>
+    <identifier></identifier>
+    <parentidentifier></parentidentifier>
+    <language></language>
+    <type></type>
+    <title>{{ wms_root_title }}</title>
+    <abstract></abstract>
+    <contact>
+      <name></name>
+      <organization></organization>
+      <position></position>
+      <voice></voice>
+      <fax></fax>
+      <email></email>
+      <role></role>
+    </contact>
+    <links/>
+    <author>AGDI</author>
+    <creation></creation>
+  </projectMetadata>
+  <Annotations/>
+  <Layouts>
+  {% for item in composers -%}
+    {{ item }}
+  {% endfor -%}
+  </Layouts>
+</qgis>
